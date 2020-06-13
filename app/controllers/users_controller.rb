@@ -21,6 +21,21 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def import
+    created = 0
+    updated = 0
+    File.open(params[:user_batch]).each do |user|
+      user_params = JSON.parse user
+      user_params['id'] = user_params.delete('user_id')
+      if User.exists? user_params['id']
+        updated += 1 if User.find(user_params['id']).update(user_params)
+      else
+        created += 1 if User.create(user_params)
+      end
+    end
+    redirect_to users_path, notice: "Created #{created} #{'user'.pluralize(created)} and updated #{updated} #{'user'.pluralize(updated)}"
+  end
+
   # POST /users
   # POST /users.json
   def create
