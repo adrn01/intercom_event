@@ -26,6 +26,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'haml', '~> 5.1'
+gem 'sphere_surface_distance', '~> 1', git: 'https://github.com/adrn01/sphere_surface_distance'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

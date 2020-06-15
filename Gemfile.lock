@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/adrn01/sphere_surface_distance
+  revision: 62a03fdf38f03b4746dcfceb3e75c0815975d35d
+  specs:
+    sphere_surface_distance (1.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -207,6 +213,7 @@ DEPENDENCIES
   rails (~> 6.0.3)
   rspec-rails (~> 4.0.0)
   sass-rails (>= 6)
+  sphere_surface_distance (~> 1)!
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
