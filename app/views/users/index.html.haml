@@ -10,7 +10,7 @@
       Input file should be text format with one user record in json format per row. Permitted
       user attributes are user_id, name, latitude and longitude.
 
-- unless @users.empty?
+- unless @users&.empty?
   .row
     .col-md-1
       %strong ID

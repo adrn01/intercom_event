@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/adrn01/sphere_surface_distance
-  revision: 62a03fdf38f03b4746dcfceb3e75c0815975d35d
+  revision: 851d7bf6b01d7105ceae2484ced8855832b43ed7
   specs:
-    sphere_surface_distance (1.0.0)
+    sphere_surface_distance (1.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -138,6 +138,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.2.1)
     rspec-core (3.9.2)
       rspec-support (~> 3.9.3)
     rspec-expectations (3.9.2)
@@ -211,6 +212,7 @@ DEPENDENCIES
   mysql2 (>= 0.4.4)
   puma (~> 4.1)
   rails (~> 6.0.3)
+  redis (~> 4.0)
   rspec-rails (~> 4.0.0)
   sass-rails (>= 6)
   sphere_surface_distance (~> 1)!
