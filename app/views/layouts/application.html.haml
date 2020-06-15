@@ -17,6 +17,8 @@
             =link_to 'Home', root_path, class: 'nav-link'
       - unless notice.blank?
         .row
-          .alert.alert-primary
-            %p= notice
+          .alert.alert-primary.alert-dismissible.fade.show{ role: 'alert' }
+            = notice
+            %button.close{ type: 'button', data: { dismiss: 'alert' }, aria: { label: 'Close' } }
+              %span{ aria: { hidden: 'true' } } &times;
       = yield
