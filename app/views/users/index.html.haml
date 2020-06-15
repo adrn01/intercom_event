@@ -1,23 +1,21 @@
-%p#notice= notice
-%h1 Users
-%table
-  %thead
-    %tr
-      %th{:colspan => "3"}
-  %tbody
-    - @users.each do |user|
-      %tr
-        %td= user.name
-        %td= user.latitude
-        %td= user.longitude
-        %td= link_to 'Show', user
-        %td= link_to 'Edit', edit_user_path(user)
-        %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New User', new_user_path
+.row
+  .col
+    %h3 Users
+.row
+  .col-md-3
+  .col-md-3
+  .col-md-3
+  .col-md-3
+- @users.each do |user|
+  .row
+    .col-md-3= user.name
+    .col-md-3= user.latitude
+    .col-md-3= user.longitude
 
 = form_tag(import_users_path, method: :post, enctype: 'multipart/form-data') do
-  %div
-    = label_tag(:user_batch, 'Select file to upload')
-    = file_field_tag(:user_batch)
-  %div= submit_tag('upload')
+  .row
+    .col-md-3= label_tag(:user_batch, 'Select file to upload')
+    .col-md-9= file_field_tag(:user_batch)
+.row
+  .col-md-3
+  .col-md-6= submit_tag('upload')
