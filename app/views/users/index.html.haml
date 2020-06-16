@@ -8,25 +8,13 @@
       %p
         Input file should be text format with one user record in json format per row. Permitted
         user attributes are user_id, name, latitude and longitude.
-  .row
-    .col-sm-12.col-md-8
-      .card.border-info.mb-3
-        .card-header Upload your user file
-        .card-body
-          = form_tag(import_users_path, method: :post, enctype: 'multipart/form-data') do
-            .container
-              .row
-                .col-md-5= label_tag(:user_batch, 'Select file to upload')
-                .col-md-7= file_field_tag(:user_batch)
-              .row
-                .col-md-5
-                .col-md-7= submit_tag('Upload')
 
 - if @users&.any?
   .container.mb-5
     .row.mb-2
       .col-sm-12
         %h3 Results
+        %p users withing 100km are pre-selected
     = form_tag(download_users_path, method: :post) do
       .row
         .col-md-1
@@ -56,3 +44,19 @@
             = distance
           .col-md-2.text-center
             = check_box_tag('ids[]', user.user_id, distance <= 100)
+
+.container.mb-5
+  .row
+    .col-sm-12.col-md-8
+      .card.border-info.mb-3
+        .card-header
+          = "Upload #{@users&.any? ? 'another' : 'your' } user file"
+        .card-body
+          = form_tag(import_users_path, method: :post, enctype: 'multipart/form-data') do
+            .container
+              .row
+                .col-md-5= label_tag(:user_batch, 'Select file to upload')
+                .col-md-7= file_field_tag(:user_batch)
+              .row
+                .col-md-5
+                .col-md-7= submit_tag('Upload')

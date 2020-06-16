@@ -6,12 +6,17 @@ class User
     raise 'Name cannot be blank' if @name.blank?
 
     @latitude = latitude.to_f
-    raise 'Latitude must be provided and be a number' if @latitude.blank? || !@latitude.is_a?(Numeric)
+    if latitude.blank? || !@latitude.is_a?(Numeric) || @latitude.to_s != latitude.to_s
+      raise 'Latitude must be provided and be a number'
+    end
 
     @longitude = longitude.to_f
-    raise 'Longitude must be provided and be a number' if @longitude.blank? || !@longitude.is_a?(Numeric)
+    if longitude.blank? || !@longitude.is_a?(Numeric) || @longitude.to_s != longitude.to_s
+      raise 'Longitude must be provided and be a number'
+    end
 
     @user_id = user_id
+    raise 'user_id must be supplied' if @user_id.blank?
   end
 
   def distance_to(latitude: 0, longitude: 0)
