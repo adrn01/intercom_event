@@ -5,10 +5,10 @@ class User
     @name = name
     raise 'Name cannot be blank' if @name.blank?
 
-    @latitude = BigDecimal(latitude)
+    @latitude = latitude.to_f
     raise 'Latitude must be provided and be a number' if @latitude.blank? || !@latitude.is_a?(Numeric)
 
-    @longitude = BigDecimal(longitude)
+    @longitude = longitude.to_f
     raise 'Longitude must be provided and be a number' if @longitude.blank? || !@longitude.is_a?(Numeric)
 
     @user_id = user_id

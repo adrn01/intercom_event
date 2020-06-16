@@ -1,6 +1,6 @@
-.container.mb-20
-  .row
-    .col-sm-12.col-md-6
+.container.mb-3
+  .row.mb-3
+    .col-sm-12.col-md-8
       %h3 Calculate distance for users
       %p
         Upload a JSON file with users and location coordinates, and calculate the distance to a
@@ -8,8 +8,8 @@
       %p
         Input file should be text format with one user record in json format per row. Permitted
         user attributes are user_id, name, latitude and longitude.
-    .col-md-1
-    .col-sm-12.col-md-5
+  .row
+    .col-sm-12.col-md-8
       .card.border-info.mb-3
         .card-header Upload your user file
         .card-body
@@ -20,33 +20,39 @@
                 .col-md-7= file_field_tag(:user_batch)
               .row
                 .col-md-5
-                .col-md-7= submit_tag('upload')
+                .col-md-7= submit_tag('Upload')
 
-- unless @users&.empty?
-  .container.mb-20
-    .row
+- if @users&.any?
+  .container.mb-5
+    .row.mb-2
       .col-sm-12
-        %h3 Cached results
-    .row
-      .col-md-1
-        %strong ID
-      .col-md-3
-        %strong Name
-      .col-md-4
-        %strong Co-ordinates
-      .col-md-4
-        %strong
-          Distance to Intercom (km)
-
-    - @users&.each do |user|
+        %h3 Results
+    = form_tag(download_users_path, method: :post) do
       .row
         .col-md-1
-          = user.user_id
+          %strong ID
         .col-md-3
-          = user.name
-        .col-md-4
-          = succeed(',') do
-            = user.latitude
-          = user.longitude
-        .col-md-4
-          = (user.distance_to(latitude: 53.339428, longitude: -6.257664) / 1000).round(2)
+          %strong Name
+        .col-md-3
+          %strong Co-ordinates
+        .col-md-3
+          %strong
+            Distance to Intercom (km)
+        .col-md-2.text-center
+          = submit_tag('Download selected')
+
+      - @users&.each_with_index do |user, i|
+        - distance = (user.distance_to(latitude: 53.339428, longitude: -6.257664) / 1000).round(2)
+        .row.pb-2.pt-2{ class: i.odd? ? 'odd-row' : nil }
+          .col-md-1
+            = user.user_id
+          .col-md-3
+            = user.name
+          .col-md-3
+            = succeed(',') do
+              = user.latitude
+            = user.longitude
+          .col-md-3
+            = distance
+          .col-md-2.text-center
+            = check_box_tag('ids[]', user.user_id, distance <= 100)

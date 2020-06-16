@@ -10,11 +10,11 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    .container.mb-20
+    .container.mb-4
       .row
         .col-sm-12
-          %h1.mt-30.mb-20 Intercom Office Distance Calculator
-      .navbar.navbar-expand-lg.navbar-dark.bg-primary
+          %h1.mt-3.mb-2 Intercom Office Distance Calculator
+      .navbar.navbar-expand-lg.navbar-dark.bg-info
         %button.navbar-toggler{"aria-controls" => "navbarResponsive", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarResponsive", "data-toggle" => "collapse", :type => "button"}
           %span.navbar-toggler-icon
         #navbarResponsive.collapse.navbar-collapse
@@ -22,7 +22,7 @@
             %li.nav-item
               =link_to 'Home', root_path, class: 'nav-link'
 
-    .container.mb-10
+    .container
       - unless notice.blank?
         .row
           .alert.alert-dismissible.alert-info
