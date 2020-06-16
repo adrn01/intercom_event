@@ -1,44 +1,52 @@
-.row
-  .col
-    %h3 Calculate distance for users
-.row
-  .col
-    %p
-      Upload a JSON file with users and location coordinates, and calculate the distance to a
-      chosen point
-    %p
-      Input file should be text format with one user record in json format per row. Permitted
-      user attributes are user_id, name, latitude and longitude.
+.container.mb-20
+  .row
+    .col-sm-12.col-md-6
+      %h3 Calculate distance for users
+      %p
+        Upload a JSON file with users and location coordinates, and calculate the distance to a
+        chosen point
+      %p
+        Input file should be text format with one user record in json format per row. Permitted
+        user attributes are user_id, name, latitude and longitude.
+    .col-md-1
+    .col-sm-12.col-md-5
+      .card.border-info.mb-3
+        .card-header Upload your user file
+        .card-body
+          = form_tag(import_users_path, method: :post, enctype: 'multipart/form-data') do
+            .container
+              .row
+                .col-md-5= label_tag(:user_batch, 'Select file to upload')
+                .col-md-7= file_field_tag(:user_batch)
+              .row
+                .col-md-5
+                .col-md-7= submit_tag('upload')
 
 - unless @users&.empty?
-  .row
-    .col-md-1
-      %strong ID
-    .col-md-3
-      %strong Name
-    .col-md-4
-      %strong Co-ordinates
-    .col-md-4
-      %strong
-        Distance to Intercom (km)
-      
-- @users&.each do |user|
-  .row
-    .col-md-1
-      = user.user_id
-    .col-md-3
-      = user.name
-    .col-md-4
-      = succeed(',') do
-        = user.latitude
-      = user.longitude
-    .col-md-4
-      = (user.distance_to(latitude: 53.339428, longitude: -6.257664) / 1000).round(2)
+  .container.mb-20
+    .row
+      .col-sm-12
+        %h3 Cached results
+    .row
+      .col-md-1
+        %strong ID
+      .col-md-3
+        %strong Name
+      .col-md-4
+        %strong Co-ordinates
+      .col-md-4
+        %strong
+          Distance to Intercom (km)
 
-= form_tag(import_users_path, method: :post, enctype: 'multipart/form-data') do
-  .row
-    .col-md-3= label_tag(:user_batch, 'Select file to upload')
-    .col-md-9= file_field_tag(:user_batch)
-  .row
-    .col-md-3
-    .col-md-6= submit_tag('upload')
+    - @users&.each do |user|
+      .row
+        .col-md-1
+          = user.user_id
+        .col-md-3
+          = user.name
+        .col-md-4
+          = succeed(',') do
+            = user.latitude
+          = user.longitude
+        .col-md-4
+          = (user.distance_to(latitude: 53.339428, longitude: -6.257664) / 1000).round(2)

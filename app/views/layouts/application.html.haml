@@ -10,15 +10,22 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    .container
+    .container.mb-20
       .row
-        %ul.nav
-          %li.nav-item
-            =link_to 'Home', root_path, class: 'nav-link'
+        .col-sm-12
+          %h1.mt-30.mb-20 Intercom Office Distance Calculator
+      .navbar.navbar-expand-lg.navbar-dark.bg-primary
+        %button.navbar-toggler{"aria-controls" => "navbarResponsive", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarResponsive", "data-toggle" => "collapse", :type => "button"}
+          %span.navbar-toggler-icon
+        #navbarResponsive.collapse.navbar-collapse
+          %ul.navbar-nav
+            %li.nav-item
+              =link_to 'Home', root_path, class: 'nav-link'
+
+    .container.mb-10
       - unless notice.blank?
         .row
-          .alert.alert-primary.alert-dismissible.fade.show{ role: 'alert' }
+          .alert.alert-dismissible.alert-info
+            %button.close{ type: 'button', data: { dismiss: 'alert' } }
             = notice
-            %button.close{ type: 'button', data: { dismiss: 'alert' }, aria: { label: 'Close' } }
-              %span{ aria: { hidden: 'true' } } &times;
-      = yield
+    = yield
