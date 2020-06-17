@@ -24,9 +24,9 @@ class UsersController < ApplicationController
 
     notice = 'loaded users'
     redirect_to users_path, notice: notice
-  rescue Exception => e
-    notice = "Oops, we weren't able to process that file, please check it is in the correct format and try again."
-    redirect_to users_path, notice: notice
+  # rescue Exception => e
+  #   notice = "Oops, we weren't able to process that file, please check it is in the correct format and try again."
+  #   redirect_to users_path, notice: notice
   end
 
   private
