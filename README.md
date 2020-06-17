@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### System Prerequisites:
+* ruby 2.7.1
+* redis-server listening on port 6379
+* bundler gem
 
-Things you may want to cover:
+## Setting up the application
+run:
+`bundle install`
+to install required gems
 
-* Ruby version
+## Running the application
+run:
+`rails s`
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+visit http://localhost:3000/ in your browser
